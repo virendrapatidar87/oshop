@@ -19,6 +19,9 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import {RouterModule} from "@angular/router";
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { AdminAuthGaurd } from './admin-auth-gaurd.service';
+import { UserService } from './user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,11 +66,11 @@ import { AuthGuard } from './auth-guard.service';
     
     {
 
-      path:"admin/products" , component:AdminProductsComponent,canActivate:[AuthGuard]
+      path:"admin/products" , component:AdminProductsComponent,canActivate:[AuthGuard, AdminAuthGaurd]
     },
     {
 
-      path:"admin/orders" , component:AdminOrdersComponent,canActivate:[AuthGuard]
+      path:"admin/orders" , component:AdminOrdersComponent,canActivate:[AuthGuard,AdminAuthGaurd]
     },
     
     {
@@ -76,7 +79,7 @@ import { AuthGuard } from './auth-guard.service';
     },
   ])
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService,AuthGuard,AdminAuthGaurd,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
