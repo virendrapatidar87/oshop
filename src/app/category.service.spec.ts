@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdminAuthGaurd } from './admin-auth-gaurd.service';
+import { CategoryService } from './category.service';
 
-describe('AdminAuthGaurdService', () => {
+describe('CategoryService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AdminAuthGaurd = TestBed.get(AdminAuthGaurd);
+    const service: CategoryService = TestBed.get(CategoryService);
     expect(service).toBeTruthy();
   });
 });
