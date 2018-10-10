@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { LoginComponent } from './login/login.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
@@ -29,7 +28,12 @@ import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component'; 
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component'; 
+import { ShoppingCartService } from './shopping-cart.service';
+import { OrderService } from './order.service';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +42,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductsComponent,
     ShoppingCartComponent,
     CheckoutComponent,
-    OrderSucessComponent,
+   
     MyOrdersComponent,
     
 
@@ -49,7 +53,10 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShippingFormComponent,
+    ShoppingCartSummaryComponent,
+    OrderSuccessComponent
   ],
   imports: [FormsModule,
     CustomFormsModule,
@@ -73,10 +80,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 
       path:"check-out" , component:CheckoutComponent ,canActivate:[AuthGuard]
     },
-    {
-
-      path:"order-sucess" , component:OrderSucessComponent,canActivate:[AuthGuard]
-    },
+    { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
     { 
       path: 'admin/products/new', 
       component: ProductFormComponent, 
@@ -106,7 +110,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     }
   ])
   ],
-  providers: [AuthService,AuthGuard,AdminAuthGaurd,UserService,ProductService,CategoryService],
+  providers: [AuthService,AuthGuard,AdminAuthGaurd,UserService,ProductService,CategoryService,ShoppingCartService,OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
